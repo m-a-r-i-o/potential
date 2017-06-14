@@ -1,9 +1,15 @@
-workingdir <- "./"
+#This script calculates several physical quantities for a given snapshot in a n-body simulation
+
+workingdir <- "./" #set the working directory, where the simulation snapshots are located
 
 center_var <- function(u)
 {	#Centering a variable by median subtraction (you can explore other possibilites...)
 	#Used to center velocities and positions to the center of mass (which would be the mean, but still)
-	return(u - median(u))
+	if(!is.numeric(u)) {
+		stop("Variable is not numeric.")
+	} else {
+		return(u - median(u))
+	}
 }
 
 cum_mass <- function(snap, epsi)
